@@ -8,6 +8,7 @@ export interface ICar extends Document {
   rating: number;
   reviews: number;
   image: string;
+  images: string[];
   gallery: string[];
   transmission: string;
   fuelType: string;
@@ -55,6 +56,11 @@ const carSchema = new Schema<ICar>(
       type: String,
       required: true,
     },
+    images: [
+      {
+        type: String,
+      },
+    ],
     gallery: [
       {
         type: String,
@@ -123,7 +129,7 @@ const carSchema = new Schema<ICar>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // Admin Model
@@ -160,14 +166,13 @@ const adminSchema = new Schema<IAdmin>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export const Car =
   mongoose.models.Car || mongoose.model<ICar>("Car", carSchema);
 export const Admin =
   mongoose.models.Admin || mongoose.model<IAdmin>("Admin", adminSchema);
-
 
 export interface IBooking extends Document {
   fullName: string;
@@ -193,8 +198,36 @@ const bookingSchema = new Schema<IBooking>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export const Booking =
   mongoose.models.Booking || mongoose.model<IBooking>("Booking", bookingSchema);
+
+export interface INewsletter extends Document {
+  email: string;
+  subscribedAt: Date;
+}
+
+const newsletterSchema = new Schema<INewsletter>(
+  {
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
+    subscribedAt: {
+      type: Date,
+      default: Date.now,
+    },
+  },
+  {
+    timestamps: true,
+  },
+);
+
+export const Newsletter =
+  mongoose.models.Newsletter ||
+  mongoose.model<INewsletter>("Newsletter", newsletterSchema);
