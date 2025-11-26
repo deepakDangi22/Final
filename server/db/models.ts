@@ -129,7 +129,7 @@ const carSchema = new Schema<ICar>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // Admin Model
@@ -166,14 +166,13 @@ const adminSchema = new Schema<IAdmin>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export const Car =
   mongoose.models.Car || mongoose.model<ICar>("Car", carSchema);
 export const Admin =
   mongoose.models.Admin || mongoose.model<IAdmin>("Admin", adminSchema);
-
 
 export interface IBooking extends Document {
   fullName: string;
@@ -199,12 +198,11 @@ const bookingSchema = new Schema<IBooking>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export const Booking =
   mongoose.models.Booking || mongoose.model<IBooking>("Booking", bookingSchema);
-
 
 export interface INewsletter extends Document {
   email: string;
@@ -227,8 +225,9 @@ const newsletterSchema = new Schema<INewsletter>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export const Newsletter =
-  mongoose.models.Newsletter || mongoose.model<INewsletter>("Newsletter", newsletterSchema);
+  mongoose.models.Newsletter ||
+  mongoose.model<INewsletter>("Newsletter", newsletterSchema);

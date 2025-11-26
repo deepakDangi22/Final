@@ -77,11 +77,14 @@ export default function CarDetails() {
   }
 
   // Use uploaded images if available, otherwise fall back to gallery URLs, then main image
-  const imageGallery = (car.images && car.images.length > 0)
-    ? car.images
-    : (car.gallery && car.gallery.length > 0)
-      ? car.gallery
-      : car.image ? [car.image] : [];
+  const imageGallery =
+    car.images && car.images.length > 0
+      ? car.images
+      : car.gallery && car.gallery.length > 0
+        ? car.gallery
+        : car.image
+          ? [car.image]
+          : [];
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % imageGallery.length);
@@ -89,7 +92,7 @@ export default function CarDetails() {
 
   const prevImage = () => {
     setCurrentImageIndex(
-      (prev) => (prev - 1 + imageGallery.length) % imageGallery.length
+      (prev) => (prev - 1 + imageGallery.length) % imageGallery.length,
     );
   };
 
@@ -144,25 +147,25 @@ export default function CarDetails() {
 
               {/* Thumbnail Gallery */}
               {imageGallery.length > 0 && (
-              <div className="flex gap-2 p-4 bg-gray-100 overflow-x-auto">
-                {imageGallery.map((img, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition ${
-                      index === currentImageIndex
-                        ? "border-red-600"
-                        : "border-gray-300 hover:border-gray-400"
-                    }`}
-                  >
-                    <img
-                      src={img}
-                      alt={`Thumbnail ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
+                <div className="flex gap-2 p-4 bg-gray-100 overflow-x-auto">
+                  {imageGallery.map((img, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition ${
+                        index === currentImageIndex
+                          ? "border-red-600"
+                          : "border-gray-300 hover:border-gray-400"
+                      }`}
+                    >
+                      <img
+                        src={img}
+                        alt={`Thumbnail ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
               )}
             </div>
 
@@ -219,14 +222,18 @@ export default function CarDetails() {
                   <Fuel size={20} className="text-red-600" />
                   <span className="font-semibold text-gray-900">Mileage</span>
                 </div>
-                <p className="text-2xl font-bold text-gray-900">{car.mileage}</p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {car.mileage}
+                </p>
               </div>
               <div className="bg-white rounded-lg p-4 shadow">
                 <div className="flex items-center gap-2 mb-2">
                   <Zap size={20} className="text-red-600" />
                   <span className="font-semibold text-gray-900">Luggage</span>
                 </div>
-                <p className="text-2xl font-bold text-gray-900">{car.luggage}</p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {car.luggage}
+                </p>
               </div>
               <div className="bg-white rounded-lg p-4 shadow">
                 <div className="flex items-center gap-2 mb-2">
@@ -254,7 +261,9 @@ export default function CarDetails() {
                   <dl className="space-y-3">
                     <div className="flex justify-between">
                       <dt className="text-gray-600">Engine</dt>
-                      <dd className="font-medium text-gray-900">{car.engine}</dd>
+                      <dd className="font-medium text-gray-900">
+                        {car.engine}
+                      </dd>
                     </div>
                     <div className="flex justify-between">
                       <dt className="text-gray-600">Fuel Type</dt>
@@ -326,7 +335,9 @@ export default function CarDetails() {
                 <p className="text-3xl font-bold text-red-600 mb-1">
                   ₹{car.pricePerDay}
                 </p>
-                <p className="text-gray-600 text-sm">+ taxes & additional fees</p>
+                <p className="text-gray-600 text-sm">
+                  + taxes & additional fees
+                </p>
               </div>
 
               <Link
@@ -342,7 +353,10 @@ export default function CarDetails() {
 
               <div className="mt-6 space-y-4 border-t pt-6">
                 <div className="flex items-start gap-3">
-                  <Shield size={20} className="text-red-600 flex-shrink-0 mt-1" />
+                  <Shield
+                    size={20}
+                    className="text-red-600 flex-shrink-0 mt-1"
+                  />
                   <div>
                     <h3 className="font-semibold text-gray-900">
                       Comprehensive Insurance
@@ -354,7 +368,10 @@ export default function CarDetails() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Clock size={20} className="text-red-600 flex-shrink-0 mt-1" />
+                  <Clock
+                    size={20}
+                    className="text-red-600 flex-shrink-0 mt-1"
+                  />
                   <div>
                     <h3 className="font-semibold text-gray-900">
                       24/7 Support
@@ -366,7 +383,10 @@ export default function CarDetails() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <MapPin size={20} className="text-red-600 flex-shrink-0 mt-1" />
+                  <MapPin
+                    size={20}
+                    className="text-red-600 flex-shrink-0 mt-1"
+                  />
                   <div>
                     <h3 className="font-semibold text-gray-900">
                       Multiple Pickup Locations
@@ -405,13 +425,19 @@ export default function CarDetails() {
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <Phone size={20} className="text-red-600" />
-                  <a href="tel:+919876543210" className="text-gray-700 hover:text-red-600 transition">
+                  <a
+                    href="tel:+919876543210"
+                    className="text-gray-700 hover:text-red-600 transition"
+                  >
                     +91 98765 43210
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail size={20} className="text-red-600" />
-                  <a href="mailto:info@rajcarrenter.com" className="text-gray-700 hover:text-red-600 transition">
+                  <a
+                    href="mailto:info@rajcarrenter.com"
+                    className="text-gray-700 hover:text-red-600 transition"
+                  >
                     info@rajcarrenter.com
                   </a>
                 </div>

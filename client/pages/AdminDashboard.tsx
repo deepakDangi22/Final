@@ -189,7 +189,7 @@ export default function AdminDashboard() {
   };
 
   const handleMainImageUpload = async (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -244,7 +244,7 @@ export default function AdminDashboard() {
   };
 
   const handleMultipleImagesUpload = async (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
@@ -464,8 +464,18 @@ export default function AdminDashboard() {
 
   const menuItems = [
     { id: "cars", label: "Cars Management", icon: Car, count: cars.length },
-    { id: "bookings", label: "Booking Enquiries", icon: Calendar, count: bookings.length },
-    { id: "subscribers", label: "Newsletter Subscribers", icon: Mail, count: subscribers.length },
+    {
+      id: "bookings",
+      label: "Booking Enquiries",
+      icon: Calendar,
+      count: bookings.length,
+    },
+    {
+      id: "subscribers",
+      label: "Newsletter Subscribers",
+      icon: Mail,
+      count: subscribers.length,
+    },
   ];
 
   return (
@@ -510,7 +520,9 @@ export default function AdminDashboard() {
               {sidebarOpen && (
                 <div className="flex-1 text-left">
                   <div className="text-sm font-medium">{item.label}</div>
-                  <div className="text-xs text-gray-400">{item.count} items</div>
+                  <div className="text-xs text-gray-400">
+                    {item.count} items
+                  </div>
                 </div>
               )}
               {sidebarOpen && activeTab === item.id && (
@@ -533,12 +545,16 @@ export default function AdminDashboard() {
       </aside>
 
       {/* Main Content */}
-      <main className={`${sidebarOpen ? "ml-64" : "ml-20"} flex-1 transition-all duration-300`}>
+      <main
+        className={`${sidebarOpen ? "ml-64" : "ml-20"} flex-1 transition-all duration-300`}
+      >
         {/* Header */}
         <header className="bg-white shadow sticky top-0 z-30">
           <div className="px-8 py-6 flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Admin Dashboard
+              </h1>
               <p className="text-gray-600 mt-1">Welcome, {admin.username}</p>
             </div>
             <div className="text-right">
@@ -630,7 +646,10 @@ export default function AdminDashboard() {
                       <select
                         value={formData.transmission}
                         onChange={(e) =>
-                          setFormData({ ...formData, transmission: e.target.value })
+                          setFormData({
+                            ...formData,
+                            transmission: e.target.value,
+                          })
                         }
                         className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
                       >
@@ -700,7 +719,10 @@ export default function AdminDashboard() {
                         placeholder="Year"
                         value={formData.year}
                         onChange={(e) =>
-                          setFormData({ ...formData, year: parseInt(e.target.value) })
+                          setFormData({
+                            ...formData,
+                            year: parseInt(e.target.value),
+                          })
                         }
                         className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
                       />
@@ -720,7 +742,10 @@ export default function AdminDashboard() {
                       placeholder="Description"
                       value={formData.description}
                       onChange={(e) =>
-                        setFormData({ ...formData, description: e.target.value })
+                        setFormData({
+                          ...formData,
+                          description: e.target.value,
+                        })
                       }
                       rows={3}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
@@ -771,7 +796,9 @@ export default function AdminDashboard() {
                         disabled={uploadingImages}
                       />
                       {uploadingImages && (
-                        <p className="text-xs text-gray-500 mt-1">Uploading...</p>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Uploading...
+                        </p>
                       )}
                     </div>
 
@@ -847,7 +874,10 @@ export default function AdminDashboard() {
                   </div>
                 ) : cars.length === 0 ? (
                   <div className="p-8 text-center">
-                    <AlertCircle className="mx-auto mb-4 text-gray-400" size={40} />
+                    <AlertCircle
+                      className="mx-auto mb-4 text-gray-400"
+                      size={40}
+                    />
                     <p className="text-gray-600">No cars added yet</p>
                   </div>
                 ) : (
@@ -952,7 +982,10 @@ export default function AdminDashboard() {
 
               {bookings.length === 0 ? (
                 <div className="p-8 text-center">
-                  <AlertCircle className="mx-auto mb-4 text-gray-400" size={40} />
+                  <AlertCircle
+                    className="mx-auto mb-4 text-gray-400"
+                    size={40}
+                  />
                   <p className="text-gray-600">No booking enquiries yet</p>
                 </div>
               ) : (
@@ -1030,7 +1063,10 @@ export default function AdminDashboard() {
 
               {subscribers.length === 0 ? (
                 <div className="p-8 text-center">
-                  <AlertCircle className="mx-auto mb-4 text-gray-400" size={40} />
+                  <AlertCircle
+                    className="mx-auto mb-4 text-gray-400"
+                    size={40}
+                  />
                   <p className="text-gray-600">No newsletter subscribers yet</p>
                 </div>
               ) : (
@@ -1057,8 +1093,13 @@ export default function AdminDashboard() {
                             {subscriber.email}
                           </td>
                           <td className="px-6 py-4 text-sm text-gray-600">
-                            {new Date(subscriber.subscribedAt).toLocaleDateString()} at{" "}
-                            {new Date(subscriber.subscribedAt).toLocaleTimeString()}
+                            {new Date(
+                              subscriber.subscribedAt,
+                            ).toLocaleDateString()}{" "}
+                            at{" "}
+                            {new Date(
+                              subscriber.subscribedAt,
+                            ).toLocaleTimeString()}
                           </td>
                         </tr>
                       ))}

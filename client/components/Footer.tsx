@@ -75,9 +75,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* About Section */}
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">Raj Car Renter</h3>
+            <h3 className="text-white font-bold text-lg mb-4">
+              Raj Car Renter
+            </h3>
             <p className="text-sm leading-relaxed mb-4">
-              Your trusted partner for premium car rental and sales service. We provide affordable luxury vehicles for rent, purchase, and test drive.
+              Your trusted partner for premium car rental and sales service. We
+              provide affordable luxury vehicles for rent, purchase, and test
+              drive.
             </p>
             <div className="flex gap-4">
               <a
@@ -116,42 +120,27 @@ export function Footer() {
             <h4 className="text-white font-bold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link
-                  to="/"
-                  className="hover:text-red-600 transition"
-                >
+                <Link to="/" className="hover:text-red-600 transition">
                   Home
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/cars"
-                  className="hover:text-red-600 transition"
-                >
+                <Link to="/cars" className="hover:text-red-600 transition">
                   Car Listings
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/about"
-                  className="hover:text-red-600 transition"
-                >
+                <Link to="/about" className="hover:text-red-600 transition">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/gallery"
-                  className="hover:text-red-600 transition"
-                >
+                <Link to="/gallery" className="hover:text-red-600 transition">
                   Gallery
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/contact"
-                  className="hover:text-red-600 transition"
-                >
+                <Link to="/contact" className="hover:text-red-600 transition">
                   Contact Us
                 </Link>
               </li>
@@ -163,18 +152,12 @@ export function Footer() {
             <h4 className="text-white font-bold text-lg mb-4">Services</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link
-                  to="/booking"
-                  className="hover:text-red-600 transition"
-                >
+                <Link to="/booking" className="hover:text-red-600 transition">
                   Car Rental
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/cars"
-                  className="hover:text-red-600 transition"
-                >
+                <Link to="/cars" className="hover:text-red-600 transition">
                   Car Purchase
                 </Link>
               </li>
@@ -201,10 +184,11 @@ export function Footer() {
             <h4 className="text-white font-bold text-lg mb-4">Contact Us</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-3">
-                <MapPin size={18} className="text-red-600 flex-shrink-0 mt-0.5" />
-                <span>
-                  123 Car Street, Mumbai, Maharashtra 400001, India
-                </span>
+                <MapPin
+                  size={18}
+                  className="text-red-600 flex-shrink-0 mt-0.5"
+                />
+                <span>123 Car Street, Mumbai, Maharashtra 400001, India</span>
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={18} className="text-red-600 flex-shrink-0" />

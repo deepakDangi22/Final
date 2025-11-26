@@ -33,7 +33,6 @@ const storage = multer.diskStorage({
 const uploadSingle = multer({ storage });
 const uploadMultiple = multer({ storage });
 
-
 // Upload single image (admin only)
 router.post(
   "/upload",
@@ -51,7 +50,7 @@ router.post(
       message: "File uploaded successfully",
       url: relativePath,
     });
-  }
+  },
 );
 
 // Upload multiple images (admin only)
@@ -65,14 +64,14 @@ router.post(
     }
 
     const urls = (req.files as Express.Multer.File[]).map(
-      (file) => `/uploads/cars/${file.filename}`
+      (file) => `/uploads/cars/${file.filename}`,
     );
 
     return res.json({
       message: "Files uploaded successfully",
       urls,
     });
-  }
+  },
 );
 
 // Register Admin
@@ -94,9 +93,7 @@ router.post("/register", async (req: AuthRequest, res: Response) => {
     });
 
     if (existingAdmin) {
-      res
-        .status(400)
-        .json({ error: "Username or email already exists" });
+      res.status(400).json({ error: "Username or email already exists" });
       return;
     }
 
@@ -170,7 +167,7 @@ router.post("/login", async (req: AuthRequest, res: Response) => {
       admin._id.toString(),
       admin.username,
       admin.email,
-      admin.role
+      admin.role,
     );
     console.log("Token generated");
 
