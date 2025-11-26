@@ -204,3 +204,31 @@ const bookingSchema = new Schema<IBooking>(
 
 export const Booking =
   mongoose.models.Booking || mongoose.model<IBooking>("Booking", bookingSchema);
+
+
+export interface INewsletter extends Document {
+  email: string;
+  subscribedAt: Date;
+}
+
+const newsletterSchema = new Schema<INewsletter>(
+  {
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
+    subscribedAt: {
+      type: Date,
+      default: Date.now,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+export const Newsletter =
+  mongoose.models.Newsletter || mongoose.model<INewsletter>("Newsletter", newsletterSchema);
