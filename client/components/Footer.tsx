@@ -239,16 +239,30 @@ export function Footer() {
                 Get the latest offers and updates delivered to your inbox
               </p>
             </div>
-            <div className="flex gap-2">
+            <form onSubmit={handleNewsletterSubscribe} className="flex gap-2">
               <input
                 type="email"
                 placeholder="Your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="px-4 py-2 rounded-lg text-gray-900 flex-1 md:flex-none focus:outline-none focus:ring-2 focus:ring-white"
+                disabled={subscribing}
               />
-              <button className="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition font-medium">
-                Subscribe
+              <button
+                type="submit"
+                disabled={subscribing}
+                className="bg-gray-900 text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition font-medium disabled:bg-gray-700 flex items-center gap-2"
+              >
+                {subscribing ? (
+                  <>
+                    <Loader size={16} className="animate-spin" />
+                    Subscribing...
+                  </>
+                ) : (
+                  "Subscribe"
+                )}
               </button>
-            </div>
+            </form>
           </div>
         </div>
 
