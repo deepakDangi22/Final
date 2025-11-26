@@ -66,11 +66,14 @@ export default function AdminDashboard() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [cars, setCars] = useState<Car[]>([]);
+  const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [admin, setAdmin] = useState<any>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [activeTab, setActiveTab] = useState<"cars" | "bookings">("cars");
+  const [uploadingImages, setUploadingImages] = useState(false);
 
   const [formData, setFormData] = useState<FormData>({
     name: "",
