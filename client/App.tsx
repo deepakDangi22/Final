@@ -30,6 +30,8 @@ function AppRoutes() {
   return (
     <>
       {!isAdminRoute && <Header />}
+      <div className="flex flex-col min-h-screen">
+        <main className="flex-1">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -46,6 +48,9 @@ function AppRoutes() {
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+        </main>
+        {!isAdminRoute && <Footer />}
+      </div>
     </>
   );
 }
