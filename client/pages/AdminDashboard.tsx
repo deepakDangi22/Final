@@ -687,6 +687,53 @@ export default function AdminDashboard() {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
               />
 
+              {/* Multiple Images Upload */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <Image className="inline mr-2" size={16} />
+                  Upload Additional Car Images (Multiple)
+                </label>
+                <input
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  onChange={handleMultipleImagesUpload}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:border-transparent"
+                  disabled={uploadingImages}
+                />
+                {uploadingImages && (
+                  <p className="text-xs text-gray-500 mt-1">Uploading...</p>
+                )}
+              </div>
+
+              {/* Display Uploaded Images */}
+              {formData.images.length > 0 && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                    Uploaded Images ({formData.images.length})
+                  </label>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {formData.images.map((img, index) => (
+                      <div key={index} className="relative group">
+                        <img
+                          src={img}
+                          alt={`Car ${index + 1}`}
+                          className="w-full h-24 object-cover rounded-lg border border-gray-300"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeImage(index)}
+                          className="absolute top-1 right-1 bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition"
+                          title="Remove image"
+                        >
+                          <X size={16} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Action Buttons */}
               <div className="flex gap-4 pt-4">
                 <button
