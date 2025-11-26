@@ -136,6 +136,26 @@ export default function AdminDashboard() {
     }
   };
 
+  const fetchBookings = async () => {
+    try {
+      const token = localStorage.getItem("adminToken");
+      const response = await fetch("/api/bookings", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      setBookings(data);
+    } catch (error) {
+      console.error("Error fetching bookings:", error);
+      toast({
+        title: "Error",
+        description: "Failed to fetch bookings",
+        variant: "destructive",
+      });
+    }
+  };
+
   const handleMainImageUpload = async (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
