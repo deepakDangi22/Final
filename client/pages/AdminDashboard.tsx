@@ -211,6 +211,63 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleMultipleImagesUpload = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    const token = localStorage.getItem("adminToken");
+    if (!token) {
+      toast({
+        title: "Not authorized",
+        description: "Please log in again as admin.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      setUploadingImages(true);
+      const formDataUpload = new FormData();
+      for (let i = 0; i < files.length; i++) {
+        formDataUpload.append("images", files[i]);
+      }
+
+      const response = await fetch("/api/admin/upload-multiple", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formDataUpload,
+      });
+
+      if (!response.ok) {
+        throw new Error("Upload failed");
+      }
+
+      const data = await response.json();
+      setFormData((prev) => ({
+        ...prev,
+        images: [...prev.images, ...data.urls],
+      }));
+
+      toast({
+        title: "Images uploaded",
+        description: `${data.urls.length} image(s) uploaded successfully.`,
+      });
+    } catch (error) {
+      console.error("Images upload error:", error);
+      toast({
+        title: "Upload failed",
+        description: "Could not upload images. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setUploadingImages(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
