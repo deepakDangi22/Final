@@ -130,9 +130,11 @@ export default function CarDetails() {
                 >
                   <ChevronRight size={24} />
                 </button>
-                <div className="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
-                  {currentImageIndex + 1} / {car.gallery.length}
-                </div>
+                {imageGallery.length > 0 && (
+                  <div className="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm">
+                    {currentImageIndex + 1} / {imageGallery.length}
+                  </div>
+                )}
               </div>
 
               {/* Thumbnail Gallery */}
