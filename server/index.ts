@@ -5,6 +5,7 @@ import { handleDemo } from "./routes/demo";
 import adminRoutes from "./routes/admin";
 import carRoutes from "./routes/cars";
 import bookingsRoutes from "./routes/bookings";
+import newsletterRoutes from "./routes/newsletter";
 import path from "path";
 import fs from "fs";
 
