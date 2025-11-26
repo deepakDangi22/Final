@@ -14,6 +14,7 @@ import {
   Phone,
   Mail,
   Loader,
+  Check,
 } from "lucide-react";
 
 export default function CarDetails() {
