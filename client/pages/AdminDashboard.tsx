@@ -478,8 +478,10 @@ export default function AdminDashboard() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Add Car Button */}
-        <div className="mb-8">
+        {activeTab === "cars" && (
+          <>
+            {/* Add Car Button */}
+            <div className="mb-8">
           {!showForm ? (
             <button
               onClick={() => setShowForm(true)}
@@ -713,11 +715,11 @@ export default function AdminDashboard() {
                   Cancel
                 </button>
               </div>
-            </form>
-          </div>
-        )}
+              </form>
+            </div>
+          )}
 
-        {/* Cars List */}
+            {/* Cars List */}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">
@@ -822,7 +824,91 @@ export default function AdminDashboard() {
               </table>
             </div>
           )}
-        </div>
+          </div>
+          </>
+        )}
+
+        {activeTab === "bookings" && (
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900">
+                Booking Enquiries ({bookings.length})
+              </h2>
+            </div>
+
+            {loading ? (
+              <div className="p-8 text-center">
+                <Loader className="animate-spin mx-auto mb-4" size={40} />
+                <p className="text-gray-600">Loading bookings...</p>
+              </div>
+            ) : bookings.length === 0 ? (
+              <div className="p-8 text-center">
+                <AlertCircle className="mx-auto mb-4 text-gray-400" size={40} />
+                <p className="text-gray-600">No booking enquiries yet</p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                        Name
+                      </th>
+                      <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                        Phone
+                      </th>
+                      <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                        Car Selected
+                      </th>
+                      <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                        Pickup Date
+                      </th>
+                      <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                        Return Date
+                      </th>
+                      <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                        Pickup Location
+                      </th>
+                      <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                        Notes
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {bookings.map((booking) => (
+                      <tr
+                        key={booking._id}
+                        className="border-b border-gray-200 hover:bg-gray-50 transition"
+                      >
+                        <td className="px-6 py-4 text-sm text-gray-900">
+                          {booking.fullName}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          {booking.phone}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-900">
+                          {booking.carName}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          {new Date(booking.pickupDate).toLocaleDateString()}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          {new Date(booking.returnDate).toLocaleDateString()}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          {booking.pickupLocation}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          {booking.additionalNotes || "-"}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
