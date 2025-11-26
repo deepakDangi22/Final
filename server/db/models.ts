@@ -8,6 +8,7 @@ export interface ICar extends Document {
   rating: number;
   reviews: number;
   image: string;
+  images: string[];
   gallery: string[];
   transmission: string;
   fuelType: string;
@@ -55,6 +56,11 @@ const carSchema = new Schema<ICar>(
       type: String,
       required: true,
     },
+    images: [
+      {
+        type: String,
+      },
+    ],
     gallery: [
       {
         type: String,
