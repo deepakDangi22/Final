@@ -30,14 +30,15 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage });
+const uploadSingle = multer({ storage });
+const uploadMultiple = multer({ storage });
 
 
-// Upload image (admin only)
+// Upload single image (admin only)
 router.post(
   "/upload",
   authMiddleware,
-  upload.single("image"),
+  uploadSingle.single("image"),
   (req: AuthRequest, res: Response) => {
     if (!req.file) {
       return res.status(400).json({ error: "No file uploaded" });
@@ -49,6 +50,27 @@ router.post(
     return res.json({
       message: "File uploaded successfully",
       url: relativePath,
+    });
+  }
+);
+
+// Upload multiple images (admin only)
+router.post(
+  "/upload-multiple",
+  authMiddleware,
+  uploadMultiple.array("images", 10),
+  (req: AuthRequest, res: Response) => {
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ error: "No files uploaded" });
+    }
+
+    const urls = (req.files as Express.Multer.File[]).map(
+      (file) => `/uploads/cars/${file.filename}`
+    );
+
+    return res.json({
+      message: "Files uploaded successfully",
+      urls,
     });
   }
 );
