@@ -386,6 +386,7 @@ export default function AdminDashboard() {
       price: 0,
       pricePerDay: 0,
       image: "",
+      images: [],
       transmission: "Manual",
       fuelType: "Petrol",
       seats: 5,
@@ -406,6 +407,13 @@ export default function AdminDashboard() {
     });
     setEditingId(null);
     setShowForm(false);
+  };
+
+  const removeImage = (index: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      images: prev.images.filter((_, i) => i !== index),
+    }));
   };
 
   const handleLogout = () => {
