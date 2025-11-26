@@ -76,8 +76,12 @@ export default function CarDetails() {
     );
   }
 
-  // Use uploaded images if available, otherwise fall back to gallery URLs
-  const imageGallery = (car.images && car.images.length > 0) ? car.images : car.gallery || [];
+  // Use uploaded images if available, otherwise fall back to gallery URLs, then main image
+  const imageGallery = (car.images && car.images.length > 0)
+    ? car.images
+    : (car.gallery && car.gallery.length > 0)
+      ? car.gallery
+      : car.image ? [car.image] : [];
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % imageGallery.length);
