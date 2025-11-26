@@ -80,6 +80,7 @@ export default function AdminDashboard() {
     price: 0,
     pricePerDay: 0,
     image: "",
+    images: [],
     transmission: "Manual",
     fuelType: "Petrol",
     seats: 5,
