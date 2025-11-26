@@ -1,6 +1,7 @@
 import { Router, Response } from "express";
 import { connectDB } from "../db/connection";
 import { Booking } from "../db/models";
+import { authMiddleware, AuthRequest } from "../utils/auth";
 
 const router = Router();
 
@@ -49,6 +50,18 @@ router.post("/", async (req, res: Response) => {
   } catch (error) {
     console.error("Error creating booking:", error);
     return res.status(500).json({ error: "Failed to save booking" });
+  }
+});
+
+// Get all bookings (admin only)
+router.get("/", authMiddleware, async (req: AuthRequest, res: Response) => {
+  try {
+    await connectDB();
+    const bookings = await Booking.find().sort({ createdAt: -1 });
+    res.json(bookings);
+  } catch (error) {
+    console.error("Error fetching bookings:", error);
+    res.status(500).json({ error: "Failed to fetch bookings" });
   }
 });
 
