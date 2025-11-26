@@ -107,11 +107,17 @@ export default function CarDetails() {
             <div className="bg-white rounded-lg overflow-hidden shadow-lg mb-6">
               {/* Main Image */}
               <div className="relative h-96 md:h-[500px] bg-gray-200 overflow-hidden">
-                <img
-                  src={car.gallery[currentImageIndex]}
-                  alt={`${car.name} view ${currentImageIndex + 1}`}
-                  className="w-full h-full object-cover"
-                />
+                {imageGallery.length > 0 ? (
+                  <img
+                    src={imageGallery[currentImageIndex]}
+                    alt={`${car.name} view ${currentImageIndex + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gray-300 text-gray-500">
+                    No images available
+                  </div>
+                )}
                 <button
                   onClick={prevImage}
                   className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition z-10"
