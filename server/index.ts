@@ -41,6 +41,8 @@ export function createServer() {
   // Booking routes
   app.use("/api/bookings", bookingsRoutes);
 
+  // Newsletter routes
+  app.use("/api/newsletter", newsletterRoutes);
 
   return app;
 }
