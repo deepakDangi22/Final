@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
 import {
   Phone,
   Mail,
@@ -7,10 +9,64 @@ import {
   Twitter,
   Instagram,
   Linkedin,
+  Loader,
 } from "lucide-react";
 
 export function Footer() {
+  const { toast } = useToast();
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState("");
+  const [subscribing, setSubscribing] = useState(false);
+
+  const handleNewsletterSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email) {
+      toast({
+        title: "Error",
+        description: "Please enter your email address",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      setSubscribing(true);
+      const response = await fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        toast({
+          title: "Subscription Failed",
+          description: data.error || "Failed to subscribe to newsletter",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      toast({
+        title: "Success",
+        description: "You have been subscribed to our newsletter!",
+      });
+      setEmail("");
+    } catch (error) {
+      console.error("Newsletter subscription error:", error);
+      toast({
+        title: "Error",
+        description: "Failed to subscribe. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubscribing(false);
+    }
+  };
 
   return (
     <footer className="bg-gray-900 text-gray-300 pt-16 pb-8">
