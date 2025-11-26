@@ -42,6 +42,7 @@ interface FormData {
   price: number;
   pricePerDay: number;
   image: string;
+  images: string[];
   transmission: string;
   fuelType: string;
   seats: number;
