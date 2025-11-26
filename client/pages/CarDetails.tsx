@@ -138,8 +138,9 @@ export default function CarDetails() {
               </div>
 
               {/* Thumbnail Gallery */}
+              {imageGallery.length > 0 && (
               <div className="flex gap-2 p-4 bg-gray-100 overflow-x-auto">
-                {car.gallery.map((img, index) => (
+                {imageGallery.map((img, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
@@ -157,6 +158,7 @@ export default function CarDetails() {
                   </button>
                 ))}
               </div>
+              )}
             </div>
 
             {/* Car Overview */}
