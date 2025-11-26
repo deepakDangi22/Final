@@ -115,6 +115,7 @@ export default function AdminDashboard() {
     }
 
     fetchCars();
+    fetchBookings();
   }, [navigate]);
 
   const fetchCars = async () => {
