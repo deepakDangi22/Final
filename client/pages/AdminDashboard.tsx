@@ -551,7 +551,7 @@ export default function AdminDashboard() {
                 />
                 {formData.image && (
                   <p className="text-xs text-gray-500 mt-1">
-                    Selected image: {formData.image}
+                    Main image: {formData.image}
                   </p>
                 )}
 
