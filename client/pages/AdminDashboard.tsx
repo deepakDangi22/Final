@@ -287,6 +287,7 @@ export default function AdminDashboard() {
         .split(",")
         .map((g) => g.trim())
         .filter(Boolean),
+      images: formData.images,
     };
 
     try {
