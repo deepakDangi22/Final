@@ -75,13 +75,16 @@ export default function CarDetails() {
     );
   }
 
+  // Use uploaded images if available, otherwise fall back to gallery URLs
+  const imageGallery = (car.images && car.images.length > 0) ? car.images : car.gallery || [];
+
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % car.gallery.length);
+    setCurrentImageIndex((prev) => (prev + 1) % imageGallery.length);
   };
 
   const prevImage = () => {
     setCurrentImageIndex(
-      (prev) => (prev - 1 + car.gallery.length) % car.gallery.length
+      (prev) => (prev - 1 + imageGallery.length) % imageGallery.length
     );
   };
 
