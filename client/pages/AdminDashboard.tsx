@@ -9,8 +9,22 @@ import {
   AlertCircle,
   Check,
   X,
+  Image,
 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+
+interface Booking {
+  _id: string;
+  fullName: string;
+  phone: string;
+  pickupDate: string;
+  returnDate: string;
+  carSelected: string;
+  carName: string;
+  pickupLocation: string;
+  additionalNotes?: string;
+  createdAt?: string;
+}
 
 interface Car {
   _id: string;
