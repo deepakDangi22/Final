@@ -449,6 +449,34 @@ export default function AdminDashboard() {
         </div>
       </header>
 
+      {/* Tabs */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white border-b border-gray-200 mt-8 rounded-t-lg">
+          <div className="flex gap-4 px-6">
+            <button
+              onClick={() => setActiveTab("cars")}
+              className={`py-4 px-4 font-medium transition border-b-2 ${
+                activeTab === "cars"
+                  ? "border-red-600 text-red-600"
+                  : "border-transparent text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              Cars Management
+            </button>
+            <button
+              onClick={() => setActiveTab("bookings")}
+              className={`py-4 px-4 font-medium transition border-b-2 ${
+                activeTab === "bookings"
+                  ? "border-red-600 text-red-600"
+                  : "border-transparent text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              Booking Enquiries ({bookings.length})
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Add Car Button */}
         <div className="mb-8">
